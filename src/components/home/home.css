@@ -1,0 +1,50 @@
+#navBAr{
+    height: 20%;
+}
+p{
+    font-size: larger;
+    color: blue;
+    padding-top: 8%;
+}
+#signIn{
+    color: red;
+
+}
+#signUp{
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    text-align: center;
+    height: 70%;
+}
+#img{
+    height: 80%;
+}
+#btn{
+    background-color: red;
+    color: white;
+}
+#btn2{
+    color: blue;
+    border: none;
+}
+#btn2:hover{
+    color: blue;
+    border: none;
+}
+#srch{
+    height: 70%;
+        margin-top: 40px;
+
+}
+#btnn{
+    margin-top: 40px;
+}
+#footer{
+    height: 10%;
+    background-color: blueviolet;
+    text-align: center;
+}
+#foot{
+    color: white;
+}
