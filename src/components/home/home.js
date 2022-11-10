@@ -1,21 +1,41 @@
 import React ,{useState, useEffect} from 'react';
 import './home.css'
 import Logo from './Capture.PNG';
+import defultImage from './computer-icons-information-png-favpng-g8DtjAPPNhyaU9EdjHQJRnV97_t.jpg';
+import axiosInstance from "./../../axiosConfig/instance";
 
 
 
 
 const Home = () => {
-  const [Gym , setGym] = useState([]);
-  useEffect(()=>{
-    fetch('https://staging.algym.com/api/v1/gyms?lat=31.2475504&long=29.963676&page_number=1&page_size=1000&search_diameter=1000').then((data)=>{
-        console.log(Gym)
-        setGym(Gym)
-    }).catch((err)=>{
-        console.log(err)
-    })
+  var [pageStart, setpageStart] = useState(1);
 
-  })
+  const [Gym , setGym] = useState([]);
+
+  console.log(pageStart)
+  useEffect(() => {
+    axiosInstance
+      .get("/gyms?lat=31.2475504&long=29.963676&page_number="+pageStart+"&page_size=3&search_diameter=1000" )
+      .then((res) => {
+        console.log(res)
+        setGym(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [pageStart]);
+  
+  function prev() {
+    debugger;
+    if (pageStart > 1) {
+      setpageStart(--pageStart);
+    }
+  }
+  function next() {
+    debugger;
+    setpageStart(++pageStart);
+    //   }
+  }
 
 
     return (
@@ -62,60 +82,45 @@ const Home = () => {
                  </div>
             </div>
             </div>
-            <div className='row'>
-
-
-            <div className="col-3">
-            <div class="card" style="width: 18rem;">
-  <img src={Gym.logo_img_url} class="card-img-top" alt="..."/>
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className="row g-5 mt-3 container-fluid mx-auto bg-light">
+              <p id='all'>All.</p>
+            {Gym.map((g) => {
+          return (
+            <>
+            <div  className="col-md-4">
+            <div id='card' className="card" >
+  <img id='imgcard'  src={g.logo_img_url ?g.logo_img_url:defultImage} className="card-img-top-rounded" alt="..."/>
+  <div className="card-body">
+    <h5 id='tittle' className="card-title">{g.name}</h5>
+    {g.is_hot_deal ?<div id='deals' className="card-text" >Hot Deals.</div> : ''}
+    
   </div>
 </div>
             </div>
-            </div>
+         
+            </>
+          );
+        })}
+        </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div className='row'>
+  <div className='col-4'><span></span></div>
+  <div className='col-4'>
+  <p id='pagination'>
+      <button id='lastbtn' onClick={() => prev()}>  Prev</button>
+      {pageStart}
+      <button  id='lastbtn'  onClick={() => next()}> Next </button>
+    </p>
+  </div>
+  <div className='col-4'><span></span></div>
+</div>
 
             <div id='footer' className="row">
                 <p id='foot' > © 2020 ALGYM All Rights Reserved.Developed by INOVA LLC</p>
             </div>
+            
+   
         </div>
     );
 }

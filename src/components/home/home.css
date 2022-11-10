@@ -41,10 +41,51 @@ p{
     margin-top: 40px;
 }
 #footer{
-    height: 10%;
     background-color: blueviolet;
     text-align: center;
 }
 #foot{
     color: white;
+}
+#imgcard{
+    max-height: 136px;
+    max-width: 136px;
+    margin-left: 30%;
+
+}
+#card{
+    min-width: 370px;
+    min-height: 235.16px;
+    border-radius: 20px;
+}
+#tittle{
+    margin-left: 30%;
+
+}
+#deals{
+    margin-left: 20%;
+    text-align: center;
+    background-color: green;
+    color: white;
+    width: 200px;
+    height: 50px;
+    padding-top: 13px;
+    border-radius: 20px;
+
+
+}
+#pagination{
+    text-align: center;
+}
+#lastbtn{
+    padding-right: 10px;
+    border: none;
+    background-color: white;
+}
+#all{
+    color: black;
+    font-size: xx-large;
+}
+P{
+    cursor: pointer;
 }
